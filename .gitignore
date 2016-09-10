@@ -9,4 +9,5 @@ plugins/*
 !plugins/tpm/
 !plugins/vim-tmux-navigator/
 !plugins/tmux-sensible/
+!plugins/tmux-pain-control/
 
