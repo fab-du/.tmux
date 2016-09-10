@@ -5,5 +5,5 @@
 !.gitignore
 !.tmux.conf
 !README.md
-!plugins/tpm/
-!plugins/vim-tmux-navigator/
+!*/plugins/tpm/
+!*/plugins/vim-tmux-navigator/
