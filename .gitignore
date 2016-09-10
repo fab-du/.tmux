@@ -3,4 +3,9 @@
 !.gitignore
 !.tmux.conf
 !README.md
+!plugins/
+
+plugins/*
+!plugins/tpm/
+!plugins/tmux-vim-navigator/
 
