@@ -7,5 +7,5 @@
 
 plugins/*
 !plugins/tpm/
-!plugins/tmux-vim-navigator/
+!plugins/vim-tmux-navigator/
 
