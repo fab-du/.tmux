@@ -16,14 +16,12 @@ get_tmux_option() {
 }
 
 pane_navigation_bindings() {
-	tmux bind-key h   select-pane -L
-	tmux bind-key C-h select-pane -L
-	tmux bind-key j   select-pane -D
-	tmux bind-key C-j select-pane -D
-	tmux bind-key k   select-pane -U
-	tmux bind-key C-k select-pane -U
-	tmux bind-key l   select-pane -R
-	tmux bind-key C-l select-pane -R
+is_vim=`ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"`
+bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
+bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
+bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
+bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
+bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 }
 
 window_move_bindings() {
@@ -33,15 +31,15 @@ window_move_bindings() {
 
 pane_resizing_bindings() {
 	local pane_resize=$(get_tmux_option "@pane_resize" "$default_pane_resize")
-	tmux bind-key -r H resize-pane -L "$pane_resize"
-	tmux bind-key -r J resize-pane -D "$pane_resize"
-	tmux bind-key -r K resize-pane -U "$pane_resize"
-	tmux bind-key -r L resize-pane -R "$pane_resize"
+	tmux bind -r H resize-pane -L "$pane_resize"
+	tmux bind -r J resize-pane -D "$pane_resize"
+	tmux bind -r K resize-pane -U "$pane_resize"
+	tmux bind -r L resize-pane -R "$pane_resize"
 }
 
 pane_split_bindings() {
-	tmux bind-key "|" split-window -h -c "#{pane_current_path}"
-	tmux bind-key "-" split-window -v -c "#{pane_current_path}"
+	tmux bind "C-l" split-window -h -c "#{pane_current_path}"
+	tmux bind "C-j" split-window -v -c "#{pane_current_path}"
 }
 
 improve_new_window_binding() {
