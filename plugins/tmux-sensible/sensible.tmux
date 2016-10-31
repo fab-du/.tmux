@@ -67,6 +67,9 @@ key_binding_not_changed() {
 main() {
 	# OPTIONS
 
+	#Set prefix
+	tmux set-option -g prefix C-a
+
 	# enable utf8 (option removed in tmux 2.2)
 	tmux set-option -g utf8 on 2>/dev/null
 
